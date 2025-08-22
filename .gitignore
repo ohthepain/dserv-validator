@@ -1,0 +1,66 @@
+# Environment files
+.env
+*.env
+.env.*
+
+# Docker volumes and data
+postgres-data/
+domain-upgrade-dump/
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Configuration overrides
+config.local.*
+settings.local.*
+
+# Docker compose override files (if they contain sensitive data)
+docker-compose.override.yml
+docker-compose.override.yaml
+
+# Node modules (if any)
+node_modules/
+
+# Python cache (if any)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Java class files (if any)
+*.class
+
+# Compiled files
+*.com
+*.exe
+*.out
+*.app
