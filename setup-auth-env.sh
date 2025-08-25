@@ -25,7 +25,7 @@ export ANS_UI_CLIENT_ID="app-user-unsafe"
 export VALIDATOR_AUTH_CLIENT_SECRET="6m12QyyGl81d9nABWQXMycZdXho6ejEX"
 
 # Audiences
-export VALIDATOR_AUTH_AUDIENCE="https://validator.example.com"
+export VALIDATOR_AUTH_AUDIENCE="https://canton.network.global"
 export LEDGER_API_AUTH_AUDIENCE="https://canton.network.global"
 
 # Admin users
