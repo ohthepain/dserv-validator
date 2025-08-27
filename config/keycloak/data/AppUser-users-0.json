@@ -1,0 +1,20 @@
+{
+  "realm": "AppUser",
+  "users": [
+    {
+      "id": "97bb6cef-a7a9-410b-ba8c-ada08451a5c9",
+      "username": "service-account-app-user-validator",
+      "emailVerified": false,
+      "createdTimestamp": 1739918628352,
+      "enabled": true,
+      "totp": false,
+      "serviceAccountClientId": "app-user-validator",
+      "credentials": [],
+      "disableableCredentialTypes": [],
+      "requiredActions": [],
+      "realmRoles": ["default-roles-appuser"],
+      "notBefore": 0,
+      "groups": []
+    }
+  ]
+}

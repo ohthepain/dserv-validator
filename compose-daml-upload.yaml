@@ -1,0 +1,22 @@
+services:
+  # Add DAML directory mount to participant
+  participant:
+    volumes:
+      - ../deserve/daml:/daml:ro
+
+  # Add DAML upload service
+  daml-uploader:
+    image: digitalasset/daml-sdk:2.8.0
+    volumes:
+      - ../deserve/daml:/daml
+      - ./upload-daml.sh:/upload-daml.sh
+    working_dir: /daml
+    command: ["/upload-daml.sh"]
+    depends_on:
+      participant:
+        condition: service_healthy
+    networks:
+      - ${DOCKER_NETWORK:-splice_validator}
+    restart: "no"
+    environment:
+      - DAML_SDK_VERSION=2.8.0

@@ -29,7 +29,7 @@ export VALIDATOR_AUTH_AUDIENCE="https://canton.network.global"
 export LEDGER_API_AUTH_AUDIENCE="https://canton.network.global"
 
 # Admin users
-export LEDGER_API_ADMIN_USER="ledger-api-user"
+export LEDGER_API_ADMIN_USER="97bb6cef-a7a9-410b-ba8c-ada08451a5c9"
 export WALLET_ADMIN_USER="administrator"
 
 echo "Environment variables set:"
