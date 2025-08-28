@@ -17,7 +17,7 @@ services:
       - POSTGRES_PASSWORD=${SPLICE_DB_PASSWORD}
       - POSTGRES_DB=postgres # not used by splice
       # Any env vars starting with CREATE_DATABASE_ will be used to create a database
-      - CREATE_DATABASE_participant=participant-${MIGRATION_ID}
+      - CREATE_DATABASE_participant=participant
       - CREATE_DATABASE_validator=validator
       - CREATE_DATABASE_keycloak=keycloak
       - CREATE_DATABASE_dserv=dserv
@@ -99,7 +99,7 @@ services:
       - CANTON_PARTICIPANT_POSTGRES_SCHEMA=participant
       - CANTON_PARTICIPANT_POSTGRES_USER=${SPLICE_DB_USER}
       - CANTON_PARTICIPANT_POSTGRES_PASSWORD=${SPLICE_DB_PASSWORD}
-      - CANTON_PARTICIPANT_POSTGRES_DB=participant-${MIGRATION_ID}
+      - CANTON_PARTICIPANT_POSTGRES_DB=participant
       - CANTON_PARTICIPANT_POSTGRES_PORT=${SPLICE_DB_PORT}
       - DB_SERVER=${SPLICE_DB_SERVER}
       - DB_PORT=${SPLICE_DB_PORT}
