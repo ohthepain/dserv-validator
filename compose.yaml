@@ -108,6 +108,8 @@ services:
       - LEDGER_API_ADMIN_USER=${LEDGER_API_ADMIN_USER}
     volumes:
       - ./config/participant/app.conf:/app/app.conf
+    ports:
+      - "7575:7575"
     depends_on:
       postgres-splice:
         condition: service_healthy
