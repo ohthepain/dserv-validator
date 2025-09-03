@@ -50,7 +50,7 @@ services:
       - ./config/keycloak/data:/opt/keycloak/data/import
     command:
       - start-dev
-      - --optimized-import
+      - --import-realm
     depends_on:
       postgres-splice:
         condition: service_healthy
