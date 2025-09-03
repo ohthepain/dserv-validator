@@ -15,8 +15,6 @@ services:
     depends_on:
       participant:
         condition: service_healthy
-    networks:
-      - ${DOCKER_NETWORK:-splice_validator}
     restart: "no"
     environment:
       - DAML_SDK_VERSION=2.8.0
