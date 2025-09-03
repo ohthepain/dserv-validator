@@ -48,8 +48,6 @@ services:
       - KC_DB_PASSWORD=${SPLICE_DB_PASSWORD}
     volumes:
       - ./config/keycloak/data:/opt/keycloak/data/import
-    ports:
-      - "8082:8082"
     command:
       - start-dev
       - --import-realm
