@@ -145,7 +145,7 @@ services:
       - PARTY_HINT=${PARTY_HINT}
       - PARTICIPANT_IDENTIFIER=${PARTICIPANT_IDENTIFIER}
     volumes:
-      - /Users/paulwilkinson/projects/dserv/dserv-validator/config/validator/app.conf:/app/app.conf
+      - ./config/validator/app.conf:/app/app.conf
       - domain-upgrade-dump:/domain-upgrade-dump
     depends_on:
       postgres-splice:
