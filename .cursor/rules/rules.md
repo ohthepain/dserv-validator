@@ -10,6 +10,7 @@
 - Handles CORS and proxy configuration for Keycloak
 - Required for the authentication flow to work correctly
 - No health check needed for nginx-keycloak
+- Keycloak is accessed through nginx on port 8082, which is mapped 8082:8082
 
 ### Keycloak Service Configuration
 
