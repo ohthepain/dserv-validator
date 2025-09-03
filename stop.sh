@@ -30,6 +30,8 @@ export SPLICE_APP_UI_AMULET_NAME_ACRONYM=""
 export SPLICE_APP_UI_NAME_SERVICE_NAME=""
 export SPLICE_APP_UI_NAME_SERVICE_NAME_ACRONYM=""
 
-docker compose -f "$script_dir/compose.yaml" down
+docker compose -f "$script_dir/compose.yaml" down --remove-orphans
+
+docker network prune -f
 
 _info "Validator stopped. Note that its data is persisted in the compose_postgres-splice volume, and will be reused if started again."

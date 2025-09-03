@@ -5,10 +5,6 @@ volumes:
   domain-upgrade-dump:
   keycloak-data:
 
-networks:
-  splice_validator:
-    driver: bridge
-
 services:
   postgres-splice:
     image: "postgres:${SPLICE_POSTGRES_VERSION}"
@@ -38,8 +34,6 @@ services:
       timeout: 3s
       retries: 3
       start_period: 60s
-    networks:
-      - ${DOCKER_NETWORK:-splice_validator}
 
   # Keycloak authentication service
   # Note: No direct port exposure - access via nginx-keycloak proxy on port 8082
@@ -60,8 +54,6 @@ services:
     depends_on:
       postgres-splice:
         condition: service_healthy
-    networks:
-      - ${DOCKER_NETWORK:-splice_validator}
 
     healthcheck:
       test: ["CMD-SHELL", "timeout 10 bash -c 'until echo > /dev/tcp/localhost/8080; do sleep 1; done'"]
@@ -92,8 +84,6 @@ services:
       timeout: 5s
       retries: 3
       start_period: 30s
-    networks:
-      - ${DOCKER_NETWORK:-splice_validator}
 
   participant:
     image: "${IMAGE_REPO}canton-participant:${IMAGE_TAG}"
@@ -120,8 +110,6 @@ services:
       postgres-splice:
         condition: service_healthy
     restart: always
-    networks:
-      - ${DOCKER_NETWORK:-splice_validator}
 
   validator:
     image: "${IMAGE_REPO}validator-app:${IMAGE_TAG}"
@@ -159,8 +147,6 @@ services:
       nginx-keycloak:
         condition: service_healthy
     restart: always
-    networks:
-      - ${DOCKER_NETWORK:-splice_validator}
 
   wallet-web-ui:
     image: "${IMAGE_REPO}wallet-web-ui:${IMAGE_TAG}"
@@ -175,8 +161,6 @@ services:
       - SPLICE_APP_UI_AMULET_NAME_ACRONYM=${SPLICE_APP_UI_AMULET_NAME_ACRONYM}
       - SPLICE_APP_UI_NAME_SERVICE_NAME=${SPLICE_APP_UI_NAME_SERVICE_NAME}
       - SPLICE_APP_UI_NAME_SERVICE_NAME_ACRONYM=${SPLICE_APP_UI_NAME_SERVICE_NAME_ACRONYM}
-    networks:
-      - ${DOCKER_NETWORK:-splice_validator}
 
   ans-web-ui:
     image: "${IMAGE_REPO}ans-web-ui:${IMAGE_TAG}"
@@ -192,8 +176,6 @@ services:
       - SPLICE_APP_UI_AMULET_NAME_ACRONYM=${SPLICE_APP_UI_AMULET_NAME_ACRONYM}
       - SPLICE_APP_UI_NAME_SERVICE_NAME=${SPLICE_APP_UI_NAME_SERVICE_NAME}
       - SPLICE_APP_UI_NAME_SERVICE_NAME_ACRONYM=${SPLICE_APP_UI_NAME_SERVICE_NAME_ACRONYM}
-    networks:
-      - ${DOCKER_NETWORK:-splice_validator}
 
   nginx:
     image: "nginx:${NGINX_VERSION}"
@@ -206,8 +188,6 @@ services:
       - wallet-web-ui
       - validator
     restart: always
-    networks:
-      - ${DOCKER_NETWORK:-splice_validator}
     healthcheck:
       test: ["CMD", "service", "nginx", "status"]
       interval: 30s
