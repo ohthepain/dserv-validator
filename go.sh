@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source .env
+
 # Load environment variables from .env file
 # Convert .env format to shell export format
 while IFS= read -r line; do
