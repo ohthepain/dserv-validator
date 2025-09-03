@@ -67,6 +67,12 @@ services:
   # - Handles CORS and proxy configuration for Keycloak
   # - Simplifies authentication setup for applications
   # - DO NOT REMOVE: This service is essential for the authentication flow
+  #
+  # HEALTH CHECK DECISION: No health check needed for nginx-keycloak
+  # - The service is lightweight and starts quickly
+  # - Health checks with external tools (wget/curl) add complexity and failure points
+  # - Using 'service_started' dependency is sufficient and more reliable
+  # - The validator service only needs nginx-keycloak to be running, not necessarily "healthy"
   nginx-keycloak:
     image: "nginx:${NGINX_VERSION}"
     container_name: nginx-keycloak
@@ -78,12 +84,6 @@ services:
       - "8082:8082"
     depends_on:
       - keycloak
-    healthcheck:
-      test: ["CMD-SHELL", "wget --quiet --tries=1 --spider http://localhost:8082/health || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
-      start_period: 30s
 
   participant:
     image: "${IMAGE_REPO}canton-participant:${IMAGE_TAG}"
@@ -145,7 +145,7 @@ services:
       postgres-splice:
         condition: service_healthy
       nginx-keycloak:
-        condition: service_healthy
+        condition: service_started
     restart: always
 
   wallet-web-ui:

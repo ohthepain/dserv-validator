@@ -9,6 +9,7 @@
 - Provides consistent port mapping (8082) for Keycloak access
 - Handles CORS and proxy configuration for Keycloak
 - Required for the authentication flow to work correctly
+- No health check needed for nginx-keycloak
 
 ### Keycloak Service Configuration
 
