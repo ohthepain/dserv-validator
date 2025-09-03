@@ -140,10 +140,6 @@ services:
       - LEDGER_API_ADMIN_USER=${LEDGER_API_ADMIN_USER}
       - WALLET_ADMIN_USER=${WALLET_ADMIN_USER}
       - PARTY_HINT=${PARTY_HINT}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_HOST=${POSTGRES_HOST:-postgres-splice}
     volumes:
       - ./config/validator/app.conf:/app/app.conf
       - domain-upgrade-dump:/domain-upgrade-dump
