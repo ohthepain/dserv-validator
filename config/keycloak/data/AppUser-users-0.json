@@ -1,20 +1,218 @@
-{
-  "realm": "AppUser",
-  "users": [
-    {
-      "id": "97bb6cef-a7a9-410b-ba8c-ada08451a5c9",
-      "username": "service-account-app-user-validator",
-      "emailVerified": false,
-      "createdTimestamp": 1739918628352,
-      "enabled": true,
-      "totp": false,
-      "serviceAccountClientId": "app-user-validator",
-      "credentials": [],
-      "disableableCredentialTypes": [],
-      "requiredActions": [],
-      "realmRoles": ["default-roles-appuser"],
-      "notBefore": 0,
-      "groups": []
+[
+  {
+    "id": "b2a3d5c7-701d-47fc-9c85-d5d6acf0d46c",
+    "username": "ledger-api-user",
+    "firstName": "Ledger",
+    "lastName": "API",
+    "email": "ledger-api-user@example.com",
+    "emailVerified": true,
+    "userProfileMetadata": {
+      "attributes": [
+        {
+          "name": "username",
+          "displayName": "${username}",
+          "required": true,
+          "readOnly": true,
+          "validators": {
+            "username-prohibited-characters": {
+              "ignore.empty.value": true
+            },
+            "multivalued": {
+              "max": "1"
+            },
+            "length": {
+              "max": 255,
+              "ignore.empty.value": true,
+              "min": 3
+            },
+            "up-username-not-idn-homograph": {
+              "ignore.empty.value": true
+            }
+          },
+          "multivalued": false
+        },
+        {
+          "name": "email",
+          "displayName": "${email}",
+          "required": false,
+          "readOnly": false,
+          "validators": {
+            "multivalued": {
+              "max": "1"
+            },
+            "length": {
+              "max": 255,
+              "ignore.empty.value": true
+            },
+            "email": {
+              "ignore.empty.value": true
+            }
+          },
+          "multivalued": false
+        },
+        {
+          "name": "firstName",
+          "displayName": "${firstName}",
+          "required": false,
+          "readOnly": false,
+          "validators": {
+            "person-name-prohibited-characters": {
+              "ignore.empty.value": true
+            },
+            "multivalued": {
+              "max": "1"
+            },
+            "length": {
+              "max": 255,
+              "ignore.empty.value": true
+            }
+          },
+          "multivalued": false
+        },
+        {
+          "name": "lastName",
+          "displayName": "${lastName}",
+          "required": false,
+          "readOnly": false,
+          "validators": {
+            "person-name-prohibited-characters": {
+              "ignore.empty.value": true
+            },
+            "multivalued": {
+              "max": "1"
+            },
+            "length": {
+              "max": 255,
+              "ignore.empty.value": true
+            }
+          },
+          "multivalued": false
+        }
+      ],
+      "groups": [
+        {
+          "name": "user-metadata",
+          "displayHeader": "User metadata",
+          "displayDescription": "Attributes, which refer to user metadata"
+        }
+      ]
+    },
+    "enabled": true,
+    "createdTimestamp": 1756324250342,
+    "totp": false,
+    "disableableCredentialTypes": [],
+    "requiredActions": [],
+    "notBefore": 0,
+    "access": {
+      "manage": true
     }
-  ]
-}
+  },
+  {
+    "id": "ccbac68e-5f20-41bc-a2f2-1d7d7c55d6e1",
+    "username": "paul+1",
+    "firstName": "paul",
+    "lastName": "abc",
+    "email": "paul+1@abc123.com",
+    "emailVerified": false,
+    "userProfileMetadata": {
+      "attributes": [
+        {
+          "name": "username",
+          "displayName": "${username}",
+          "required": true,
+          "readOnly": true,
+          "validators": {
+            "username-prohibited-characters": {
+              "ignore.empty.value": true
+            },
+            "multivalued": {
+              "max": "1"
+            },
+            "length": {
+              "max": 255,
+              "ignore.empty.value": true,
+              "min": 3
+            },
+            "up-username-not-idn-homograph": {
+              "ignore.empty.value": true
+            }
+          },
+          "multivalued": false
+        },
+        {
+          "name": "email",
+          "displayName": "${email}",
+          "required": false,
+          "readOnly": false,
+          "validators": {
+            "multivalued": {
+              "max": "1"
+            },
+            "length": {
+              "max": 255,
+              "ignore.empty.value": true
+            },
+            "email": {
+              "ignore.empty.value": true
+            }
+          },
+          "multivalued": false
+        },
+        {
+          "name": "firstName",
+          "displayName": "${firstName}",
+          "required": false,
+          "readOnly": false,
+          "validators": {
+            "person-name-prohibited-characters": {
+              "ignore.empty.value": true
+            },
+            "multivalued": {
+              "max": "1"
+            },
+            "length": {
+              "max": 255,
+              "ignore.empty.value": true
+            }
+          },
+          "multivalued": false
+        },
+        {
+          "name": "lastName",
+          "displayName": "${lastName}",
+          "required": false,
+          "readOnly": false,
+          "validators": {
+            "person-name-prohibited-characters": {
+              "ignore.empty.value": true
+            },
+            "multivalued": {
+              "max": "1"
+            },
+            "length": {
+              "max": 255,
+              "ignore.empty.value": true
+            }
+          },
+          "multivalued": false
+        }
+      ],
+      "groups": [
+        {
+          "name": "user-metadata",
+          "displayHeader": "User metadata",
+          "displayDescription": "Attributes, which refer to user metadata"
+        }
+      ]
+    },
+    "enabled": true,
+    "createdTimestamp": 1756413122461,
+    "totp": false,
+    "disableableCredentialTypes": [],
+    "requiredActions": [],
+    "notBefore": 0,
+    "access": {
+      "manage": true
+    }
+  }
+]
