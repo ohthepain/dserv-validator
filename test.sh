@@ -65,6 +65,15 @@ test_json_endpoint() {
     fi
 }
 
+# Source environment variables
+if [ -f .env ]; then
+    source .env
+    print_status "Loaded environment variables from .env"
+else
+    print_error ".env file not found. Please create one with the required variables."
+    exit 1
+fi
+
 # Main test function
 main() {
     print_status "Starting dserv-validator test suite..."
@@ -128,8 +137,8 @@ main() {
     token_response=$(curl -s -X POST \
         -H "Content-Type: application/x-www-form-urlencoded" \
         -d "grant_type=client_credentials" \
-        -d "client_id=app-user-validator" \
-        -d "client_secret=RdqUbFOBlz94eev4rS96dmG9lXPSHUfG" \
+        -d "client_id=${VALIDATOR_AUTH_CLIENT_ID}" \
+        -d "client_secret=${VALIDATOR_AUTH_CLIENT_SECRET}" \
         "http://keycloak.localhost:8082/realms/AppUser/protocol/openid-connect/token")
     
     if echo "$token_response" | jq -e '.access_token' >/dev/null 2>&1; then
@@ -147,7 +156,7 @@ main() {
             -H "Content-Type: application/x-www-form-urlencoded" \
             -d "token=$token" \
             -d "client_id=app-user-validator" \
-            -d "client_secret=6m12QyyGl81d9nABWQXMycZdXho6ejEX" \
+            -d "client_secret=RdqUbFOBlz94eev4rS96dmG9lXPSHUfG" \
             "http://keycloak.localhost:8082/realms/AppUser/protocol/openid-connect/token/introspect")
         
         if echo "$introspection_response" | jq -e '.active' >/dev/null 2>&1; then
