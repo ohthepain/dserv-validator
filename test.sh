@@ -129,7 +129,7 @@ main() {
         -H "Content-Type: application/x-www-form-urlencoded" \
         -d "grant_type=client_credentials" \
         -d "client_id=app-user-validator" \
-        -d "client_secret=6m12QyyGl81d9nABWQXMycZdXho6ejEX" \
+        -d "client_secret=RdqUbFOBlz94eev4rS96dmG9lXPSHUfG" \
         "http://keycloak.localhost:8082/realms/AppUser/protocol/openid-connect/token")
     
     if echo "$token_response" | jq -e '.access_token' >/dev/null 2>&1; then
