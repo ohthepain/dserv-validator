@@ -80,6 +80,7 @@ services:
       - ./config/nginx-keycloak/oidc-config.json:/etc/nginx/oidc-config.json
     ports:
       - "8082:8082"
+      - "8083:8083"
     depends_on:
       - keycloak
 
