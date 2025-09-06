@@ -13,6 +13,14 @@ Access Points
 Frontend: http://localhost:8082 (via nginx proxy)
 http://localhost:8082/admin/master/console/
 
+# ssl
+
+All internal services use HTTP for communication within the Docker network
+
+Realms are set to "sslRequired": "external"
+
+Keycloak listens on port 443 with SSL at keycloak.dserv.io
+
 # nginx-keycloak Configuration
 
 - Port: Exposes port 8082 to host

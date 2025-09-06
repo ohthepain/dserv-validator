@@ -8,7 +8,8 @@
 
 #### Scenario 1: Remote Development
 
-All 3 repos are deployed to our ubuntu server. 
+All 3 repos are deployed to our ubuntu server.
+Web clients require https.
 
 ```env
 KEYCLOAK_URL=https://keycloak.dserv.io:8082
@@ -20,7 +21,7 @@ USER_VALIDATOR_URL=http://138.201.22.153:27575
 #### Scenario 2: Local client and remote backend and services
 
 This and deserv repos are deployed to our ubuntu server. Frontend (dfront) runs locally.
-We run a local proxy to keycloak for the dfront
+Web clients require https but we run a local proxy to keycloak for the dfront
 
 ```env
 KEYCLOAK_URL=http://keycloak.localhost:8083
@@ -34,6 +35,7 @@ USER_VALIDATOR_URL=http://localhost:27575
 We run the services in this dserv-validator project with docker compose, all local.
 We run this project from the debugger, with a configuration in launch.json.
 We run the front end from the debugger, with a configuration in that project's launch.json.
+Web clients can use http
 
 ```env
 KEYCLOAK_URL=http://keycloak.localhost:8082
