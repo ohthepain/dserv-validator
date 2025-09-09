@@ -25,7 +25,7 @@ else
     exit 1
 fi
 
-echo "📋 Starting services..."
+echo "📋 Starting services (excluding DAML uploader)..."
 docker compose up -d
 
 echo ""

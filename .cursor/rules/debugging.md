@@ -2,11 +2,13 @@
 
 ## Service Control Commands
 
-- **Start services**: Use `./go-local.sh` or `./go-production.sh` (not `docker compose up`)
-- **Stop services**: Use `./stop.sh` (not `docker compose down`)
+- **Start local development**: Use `./go-local.sh` (excludes DAML uploader)
+- **Start production**: Use `./go-production.sh` (includes DAML uploader)
+- **Stop services**: Use `./stop.sh` (stops all services including DAML uploader)
 
 ## Important Notes
 
 - Always use the project's custom scripts instead of direct docker compose commands
-- The `./go-local.sh` or `./go-production.sh` script handles proper startup sequence and environment setup
-- The `stop.sh` script ensures clean shutdown and proper cleanup
+- **Local development** (`./go-local.sh`): HTTP only, no SSL certificates, no DAML uploader
+- **Production** (`./go-production.sh`): HTTPS with SSL certificates, includes DAML uploader
+- The `stop.sh` script ensures clean shutdown and proper cleanup of all services

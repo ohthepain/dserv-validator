@@ -32,8 +32,8 @@ cp config/nginx-keycloak/keycloak-production.conf config/nginx-keycloak/keycloak
 echo "📋 Updating compose.yaml for production..."
 sed -i 's|keycloak-local.conf|keycloak.conf|g' compose.yaml
 
-echo "📋 Starting services..."
-docker compose up -d
+echo "📋 Starting services (including DAML uploader)..."
+docker compose -f compose.yaml -f compose-daml-upload.yaml up -d
 
 echo ""
 echo "🌐 Access Points:"
