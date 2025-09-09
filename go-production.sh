@@ -30,7 +30,9 @@ cp config/nginx-keycloak/keycloak-production.conf config/nginx-keycloak/keycloak
 
 # Update compose.yaml to use the production config
 echo "📋 Updating compose.yaml for production..."
-sed -i 's|keycloak-local.conf|keycloak.conf|g' compose.yaml
+# Use sed with backup extension for macOS compatibility
+sed -i.bak 's|keycloak-local.conf|keycloak.conf|g' compose.yaml
+rm -f compose.yaml.bak
 
 echo "📋 Starting services (including DAML uploader)..."
 docker compose -f compose.yaml -f compose-daml-upload.yaml up -d
