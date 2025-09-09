@@ -82,7 +82,7 @@ main() {
     # Check if services are running
     print_status "Checking if Docker services are running..."
     if ! docker compose ps | grep -q "Up"; then
-        print_error "Docker services are not running. Please start them first with: ./go.sh"
+        print_error "Docker services are not running. Please start them first with: ./go-local or ./go-production.sh"
         exit 1
     fi
     print_success "Docker services are running"
