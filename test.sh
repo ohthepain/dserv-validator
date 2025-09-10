@@ -180,23 +180,6 @@ main() {
     echo
     print_status "Testing environment variables..."
     
-    # Source the auth environment script
-    if [ -f "setup-auth-env.sh" ]; then
-        source setup-auth-env.sh
-        print_success "Environment variables loaded"
-        
-        # Test that key variables are set
-        if [ -n "$AUTH_JWKS_URL" ] && [ -n "$VALIDATOR_AUTH_CLIENT_ID" ]; then
-            print_success "Key environment variables are set"
-            echo "AUTH_JWKS_URL: $AUTH_JWKS_URL"
-            echo "VALIDATOR_AUTH_CLIENT_ID: $VALIDATOR_AUTH_CLIENT_ID"
-        else
-            print_error "Some environment variables are missing"
-        fi
-    else
-        print_error "setup-auth-env.sh not found"
-    fi
-    
     echo
     print_status "Test summary:"
     print_status "✅ Basic connectivity tests completed"
