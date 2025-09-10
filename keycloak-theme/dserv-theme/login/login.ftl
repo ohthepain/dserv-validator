@@ -1,6 +1,4 @@
 <#import "template.ftl" as layout>
-<#import "lib.ftl" as lib>
-
 <@layout.registrationLayout displayMessage=!messagesPerField.existsError('username','password') displayInfo=realm.password && realm.registrationAllowed && !registrationDisabled??; section>
     <#if section = "header">
         <div class="dserv-login-header">
@@ -30,28 +28,28 @@
                             <#else>
                                 <input tabindex="3" id="rememberMe" name="rememberMe" type="checkbox">
                             </#if>
-                            <label for="rememberMe">${msg("rememberMe")}</label>
+                            <label for="rememberMe">Remember me</label>
                         </div>
                     </#if>
                 </div>
 
                 <div class="dserv-form-actions">
                     <input type="hidden" id="id-hidden-input" name="credentialId" <#if auth.selectedCredential?has_content>value="${auth.selectedCredential}"</#if>/>
-                    <input tabindex="4" class="dserv-button dserv-button-primary" name="login" id="kc-login" type="submit" value="${msg("doLogIn")}"/>
+                    <input tabindex="4" class="dserv-button dserv-button-primary" name="login" id="kc-login" type="submit" value="Sign In"/>
                 </div>
             </form>
         </div>
     <#elseif section = "info" >
         <#if realm.password && realm.registrationAllowed && !registrationDisabled??>
             <div class="dserv-registration-info">
-                <p>${msg("noAccount")} <a tabindex="6" href="${url.registrationUrl}">${msg("doRegister")}</a></p>
+                <p>New user? <a tabindex="6" href="${url.registrationUrl}">Register</a></p>
             </div>
         </#if>
     <#elseif section = "socialProviders" >
         <#if realm.password && social.providers??>
             <div class="dserv-social-login">
                 <hr/>
-                <p>${msg("identity-provider-login-label")}</p>
+                <p>Or sign in with</p>
                 <#list social.providers as p>
                     <a id="social-${p.alias}" class="dserv-social-button dserv-social-${p.alias}" href="${p.loginUrl}">
                         <span>${p.displayName}</span>
