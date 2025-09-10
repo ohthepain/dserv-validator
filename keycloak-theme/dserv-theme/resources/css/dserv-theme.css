@@ -1,0 +1,263 @@
+/* DServ Keycloak Theme Styles */
+
+:root {
+  --dserv-primary: #2563eb;
+  --dserv-primary-dark: #1d4ed8;
+  --dserv-secondary: #64748b;
+  --dserv-success: #10b981;
+  --dserv-warning: #f59e0b;
+  --dserv-error: #ef4444;
+  --dserv-background: #f8fafc;
+  --dserv-card-bg: #ffffff;
+  --dserv-text: #1e293b;
+  --dserv-text-light: #64748b;
+  --dserv-border: #e2e8f0;
+  --dserv-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--dserv-background);
+  color: var(--dserv-text);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.dserv-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.dserv-card {
+  background: var(--dserv-card-bg);
+  border-radius: 12px;
+  box-shadow: var(--dserv-shadow);
+  width: 100%;
+  max-width: 400px;
+  overflow: hidden;
+}
+
+.dserv-card-header {
+  background: linear-gradient(135deg, var(--dserv-primary) 0%, var(--dserv-primary-dark) 100%);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+.dserv-login-header h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.dserv-login-header p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 1rem;
+}
+
+.dserv-card-body {
+  padding: 2rem;
+}
+
+.dserv-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.dserv-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--dserv-border);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background: white;
+}
+
+.dserv-input:focus {
+  outline: none;
+  border-color: var(--dserv-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.dserv-input::placeholder {
+  color: var(--dserv-text-light);
+}
+
+.dserv-form-options {
+  margin-bottom: 1.5rem;
+}
+
+.dserv-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dserv-checkbox input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--dserv-primary);
+}
+
+.dserv-checkbox label {
+  font-size: 0.875rem;
+  color: var(--dserv-text-light);
+  cursor: pointer;
+}
+
+.dserv-button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.dserv-button-primary {
+  background: var(--dserv-primary);
+  color: white;
+}
+
+.dserv-button-primary:hover {
+  background: var(--dserv-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.dserv-button-primary:active {
+  transform: translateY(0);
+}
+
+.dserv-alert {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid;
+}
+
+.dserv-alert-error {
+  background: #fef2f2;
+  border-color: var(--dserv-error);
+  color: #991b1b;
+}
+
+.dserv-alert-warning {
+  background: #fffbeb;
+  border-color: var(--dserv-warning);
+  color: #92400e;
+}
+
+.dserv-alert-success {
+  background: #f0fdf4;
+  border-color: var(--dserv-success);
+  color: #166534;
+}
+
+.dserv-alert-text {
+  font-weight: 500;
+}
+
+.dserv-info {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--dserv-border);
+  text-align: center;
+}
+
+.dserv-registration-info {
+  color: var(--dserv-text-light);
+  font-size: 0.875rem;
+}
+
+.dserv-registration-info a {
+  color: var(--dserv-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.dserv-registration-info a:hover {
+  text-decoration: underline;
+}
+
+.dserv-social-login {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--dserv-border);
+}
+
+.dserv-social-login hr {
+  border: none;
+  border-top: 1px solid var(--dserv-border);
+  margin: 0 0 1rem 0;
+}
+
+.dserv-social-login p {
+  text-align: center;
+  color: var(--dserv-text-light);
+  font-size: 0.875rem;
+  margin: 0 0 1rem 0;
+}
+
+.dserv-social-button {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border: 2px solid var(--dserv-border);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--dserv-text);
+  font-weight: 500;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.dserv-social-button:hover {
+  border-color: var(--dserv-primary);
+  background: rgba(37, 99, 235, 0.05);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .dserv-container {
+    padding: 0.5rem;
+  }
+
+  .dserv-card-header,
+  .dserv-card-body {
+    padding: 1.5rem;
+  }
+
+  .dserv-login-header h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Loading State */
+.dserv-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Focus Management */
+.dserv-input:focus,
+.dserv-button:focus {
+  outline: 2px solid var(--dserv-primary);
+  outline-offset: 2px;
+}

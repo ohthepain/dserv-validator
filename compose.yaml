@@ -48,6 +48,7 @@ services:
       - KC_DB_PASSWORD=${SPLICE_DB_PASSWORD}
     volumes:
       - ./config/keycloak/data:/opt/keycloak/data/import
+      - ./keycloak-theme:/opt/keycloak/themes
     command:
       - start-dev
       - --import-realm
