@@ -43,6 +43,9 @@ Thumbs.db
 config.local.*
 settings.local.*
 
+# Generated configuration files
+config/nginx-keycloak/keycloak.conf
+
 # Docker compose override files (if they contain sensitive data)
 docker-compose.override.yml
 docker-compose.override.yaml

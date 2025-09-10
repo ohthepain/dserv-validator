@@ -1,20 +1,5 @@
-<#import "lib.ftl" as lib>
-
-<#macro registrationLayout displayMessage=true displayInfo=false displayRequiredFields=false showAnotherWayIfPresent=true>
-<!DOCTYPE html>
-<html class="${properties.kcHtmlClass!}" lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>${msg("loginTitleHtml",(realm.displayName!''))}</title>
-    <link rel="icon" href="${url.resourcesPath}/img/favicon.ico" />
-    <#if properties.meta?has_content>
-        <#list properties.meta?split(' ') as meta>
-            <meta name="${meta?split('==')[0]}" content="${meta?split('==')[1]}"/>
-        </#list>
-    </#if>
-    <style>
 /* DServ Keycloak Theme Styles */
+
 :root {
   --dserv-primary: #2563eb;
   --dserv-primary-dark: #1d4ed8;
@@ -209,17 +194,55 @@ body {
   text-decoration: underline;
 }
 
+.dserv-social-login {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--dserv-border);
+}
+
+.dserv-social-login hr {
+  border: none;
+  border-top: 1px solid var(--dserv-border);
+  margin: 0 0 1rem 0;
+}
+
+.dserv-social-login p {
+  text-align: center;
+  color: var(--dserv-text-light);
+  font-size: 0.875rem;
+  margin: 0 0 1rem 0;
+}
+
+.dserv-social-button {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border: 2px solid var(--dserv-border);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--dserv-text);
+  font-weight: 500;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.dserv-social-button:hover {
+  border-color: var(--dserv-primary);
+  background: rgba(37, 99, 235, 0.05);
+}
+
 /* Responsive Design */
 @media (max-width: 480px) {
   .dserv-container {
     padding: 0.5rem;
   }
-  
+
   .dserv-card-header,
   .dserv-card-body {
     padding: 1.5rem;
   }
-  
+
   .dserv-login-header h1 {
     font-size: 1.5rem;
   }
@@ -238,32 +261,3 @@ body {
   outline: 2px solid var(--dserv-primary);
   outline-offset: 2px;
 }
-    </style>
-</head>
-<body class="${properties.kcBodyClass!}">
-    <div class="dserv-container">
-        <div class="dserv-card">
-            <div class="dserv-card-header">
-                <#nested "header">
-            </div>
-            <div class="dserv-card-body">
-                <#if displayMessage && message?has_content && (message.type != 'warning' || !isAppInitiatedAction??)>
-                    <div class="dserv-alert dserv-alert-${message.type}">
-                        <span class="dserv-alert-text">${kcSanitize(message.summary)?no_esc}</span>
-                    </div>
-                </#if>
-                <#nested "form">
-                <#if displayInfo>
-                    <div class="dserv-info">
-                        <#nested "info">
-                    </div>
-                </#if>
-                <#if showAnotherWayIfPresent>
-                    <#nested "socialProviders">
-                </#if>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
-</#macro>

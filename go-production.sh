@@ -13,7 +13,8 @@ echo ""
 if [ ! -d "/etc/letsencrypt/live/keycloak.dserv.io" ]; then
     echo "❌ Error: SSL certificates not found!"
     echo "   Expected: /etc/letsencrypt/live/keycloak.dserv.io/"
-    echo "   Please ensure Let's Encrypt certificates are properly installed."
+    echo "   This script is for production deployment only."
+    echo "   For local development, use: ./go-local.sh"
     exit 1
 fi
 
@@ -24,18 +25,8 @@ if [ ! -f "config/nginx-keycloak/keycloak-production.conf" ]; then
     exit 1
 fi
 
-# Copy production config to be the active config
-echo "📋 Setting up production configuration..."
-cp config/nginx-keycloak/keycloak-production.conf config/nginx-keycloak/keycloak.conf
-
-# Update compose.yaml to use the production config
-echo "📋 Updating compose.yaml for production..."
-# Use sed with backup extension for macOS compatibility
-sed -i.bak 's|keycloak-local.conf|keycloak.conf|g' compose.yaml
-rm -f compose.yaml.bak
-
 echo "📋 Starting services (including DAML uploader)..."
-docker compose -f compose.yaml -f compose-daml-upload.yaml up -d
+docker compose -f compose.yaml -f compose.prod.yaml -f compose-daml-upload.yaml up -d
 
 echo ""
 echo "🌐 Access Points:"
