@@ -74,14 +74,15 @@ body {
 
 .dserv-login-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 0.2rem;
+  padding-top: 1rem;
 }
 
 .dserv-brand {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.2rem;
 }
 
 .dserv-icon {
@@ -126,13 +127,13 @@ body {
 
 .dserv-form-header {
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .dserv-form-title {
   font-size: 1.25rem;
   font-weight: 600;
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0rem 0;
   color: var(--dserv-text);
 }
 
@@ -406,8 +407,8 @@ body {
 }
 
 .dserv-info {
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
+  margin-top: 1.05rem;
+  padding-top: 1.05rem;
   border-top: 1px solid var(--dserv-border);
   text-align: center;
 }
