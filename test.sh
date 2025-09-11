@@ -155,8 +155,8 @@ main() {
         introspection_response=$(curl -s -X POST \
             -H "Content-Type: application/x-www-form-urlencoded" \
             -d "token=$token" \
-            -d "client_id=app-user-validator" \
-            -d "client_secret=RdqUbFOBlz94eev4rS96dmG9lXPSHUfG" \
+            -d "client_id=${VALIDATOR_AUTH_CLIENT_ID}" \
+            -d "client_secret=${VALIDATOR_AUTH_CLIENT_SECRET}" \
             "http://keycloak.localhost:8082/realms/AppUser/protocol/openid-connect/token/introspect")
         
         if echo "$introspection_response" | jq -e '.active' >/dev/null 2>&1; then
