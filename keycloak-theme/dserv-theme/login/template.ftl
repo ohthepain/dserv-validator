@@ -14,20 +14,25 @@
         </#list>
     </#if>
     <style>
-/* DServ Keycloak Theme Styles */
+/* DServ Keycloak Theme Styles - Inspired by React Auth Component */
 :root {
   --dserv-primary: #2563eb;
+  --dserv-primary-glow: #3b82f6;
   --dserv-primary-dark: #1d4ed8;
   --dserv-secondary: #64748b;
   --dserv-success: #10b981;
   --dserv-warning: #f59e0b;
   --dserv-error: #ef4444;
   --dserv-background: #f8fafc;
+  --dserv-background-gradient: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #e0e7ff 100%);
   --dserv-card-bg: #ffffff;
   --dserv-text: #1e293b;
   --dserv-text-light: #64748b;
+  --dserv-text-muted: #94a3b8;
   --dserv-border: #e2e8f0;
+  --dserv-border-light: rgba(226, 232, 240, 0.4);
   --dserv-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --dserv-shadow-elegant: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 * {
@@ -35,12 +40,13 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: var(--dserv-background);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--dserv-background-gradient);
   color: var(--dserv-text);
   margin: 0;
   padding: 0;
   line-height: 1.6;
+  min-height: 100vh;
 }
 
 .dserv-container {
@@ -53,48 +59,146 @@ body {
 
 .dserv-card {
   background: var(--dserv-card-bg);
+  border: 0;
   border-radius: 12px;
-  box-shadow: var(--dserv-shadow);
+  box-shadow: var(--dserv-shadow-elegant);
   width: 100%;
   max-width: 400px;
   overflow: hidden;
 }
 
 .dserv-card-header {
-  background: linear-gradient(135deg, var(--dserv-primary) 0%, var(--dserv-primary-dark) 100%);
-  color: white;
-  padding: 2rem;
+  padding: 0;
+  background: transparent;
+}
+
+.dserv-login-header {
   text-align: center;
+  margin-bottom: 2rem;
 }
 
-.dserv-login-header h1 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.75rem;
+.dserv-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.dserv-icon {
+  width: 2rem;
+  height: 2rem;
+  background: linear-gradient(135deg, var(--dserv-primary) 0%, var(--dserv-primary-glow) 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dserv-icon-svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: white;
+}
+
+.dserv-title {
+  font-size: 1.5rem;
   font-weight: 700;
+  background: linear-gradient(135deg, var(--dserv-primary) 0%, var(--dserv-primary-glow) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
 }
 
-.dserv-login-header p {
+.dserv-subtitle {
+  color: var(--dserv-text-muted);
   margin: 0;
-  opacity: 0.9;
-  font-size: 1rem;
+  font-size: 0.875rem;
 }
 
 .dserv-card-body {
   padding: 2rem;
 }
 
-.dserv-form-group {
+.dserv-form-container {
+  width: 100%;
+}
+
+.dserv-form-header {
+  text-align: center;
   margin-bottom: 1.5rem;
+}
+
+.dserv-form-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: var(--dserv-text);
+}
+
+.dserv-form-description {
+  color: var(--dserv-text-muted);
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.dserv-tabs {
+  width: 100%;
+}
+
+.dserv-tab-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-bottom: 1.5rem;
+  background: #f1f5f9;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.dserv-tab-trigger {
+  background: transparent;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--dserv-text-muted);
+}
+
+.dserv-tab-trigger.dserv-tab-active {
+  background: white;
+  color: var(--dserv-text);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.dserv-tab-content {
+  display: block;
+}
+
+.dserv-form-group {
+  margin-bottom: 1rem;
+}
+
+.dserv-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--dserv-text);
+  margin-bottom: 0.5rem;
 }
 
 .dserv-input {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 2px solid var(--dserv-border);
+  border: 1px solid var(--dserv-border);
   border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
   background: white;
+  color: var(--dserv-text);
 }
 
 .dserv-input:focus {
@@ -104,11 +208,11 @@ body {
 }
 
 .dserv-input::placeholder {
-  color: var(--dserv-text-light);
+  color: var(--dserv-text-muted);
 }
 
 .dserv-form-options {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .dserv-checkbox {
@@ -125,7 +229,7 @@ body {
 
 .dserv-checkbox label {
   font-size: 0.875rem;
-  color: var(--dserv-text-light);
+  color: var(--dserv-text-muted);
   cursor: pointer;
 }
 
@@ -134,7 +238,7 @@ body {
   padding: 0.75rem 1rem;
   border: none;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -156,6 +260,120 @@ body {
 
 .dserv-button-primary:active {
   transform: translateY(0);
+}
+
+.dserv-social-section {
+  margin-top: 1.5rem;
+}
+
+.dserv-divider {
+  position: relative;
+  margin: 1.5rem 0;
+}
+
+.dserv-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--dserv-border);
+}
+
+.dserv-divider-text {
+  position: relative;
+  background: var(--dserv-card-bg);
+  padding: 0 1rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--dserv-text-muted);
+  font-weight: 500;
+}
+
+.dserv-social-buttons {
+  margin-top: 1.5rem;
+}
+
+.dserv-social-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.dserv-social-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--dserv-border);
+  border-radius: 8px;
+  background: white;
+  color: var(--dserv-text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.dserv-social-button:hover {
+  background: #f8fafc;
+  border-color: var(--dserv-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dserv-social-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.dserv-footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--dserv-border-light);
+}
+
+.dserv-footer-link {
+  font-size: 0.75rem;
+  color: var(--dserv-text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.dserv-footer-link:hover {
+  color: var(--dserv-text);
+  text-decoration: underline;
+}
+
+.dserv-footer-separator {
+  font-size: 0.75rem;
+  color: var(--dserv-text-muted);
+}
+
+.dserv-debug-section {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.dserv-debug-button {
+  background: none;
+  border: none;
+  color: var(--dserv-text-muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.dserv-debug-button:hover {
+  color: var(--dserv-text);
 }
 
 .dserv-alert {
@@ -195,7 +413,7 @@ body {
 }
 
 .dserv-registration-info {
-  color: var(--dserv-text-light);
+  color: var(--dserv-text-muted);
   font-size: 0.875rem;
 }
 
@@ -215,13 +433,16 @@ body {
     padding: 0.5rem;
   }
   
-  .dserv-card-header,
   .dserv-card-body {
     padding: 1.5rem;
   }
   
-  .dserv-login-header h1 {
-    font-size: 1.5rem;
+  .dserv-title {
+    font-size: 1.25rem;
+  }
+  
+  .dserv-social-row {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -234,7 +455,8 @@ body {
 
 /* Focus Management */
 .dserv-input:focus,
-.dserv-button:focus {
+.dserv-button:focus,
+.dserv-social-button:focus {
   outline: 2px solid var(--dserv-primary);
   outline-offset: 2px;
 }
@@ -247,9 +469,9 @@ body {
                 <#nested "header">
             </div>
             <div class="dserv-card-body">
-                <#if displayMessage && message?has_content && (message.type != 'warning' || !isAppInitiatedAction??)>
-                    <div class="dserv-alert dserv-alert-${message.type}">
-                        <span class="dserv-alert-text">${kcSanitize(message.summary)?no_esc}</span>
+                <#if displayMessage && message?has_content && message.summary?has_content && (message.type != 'warning' || !isAppInitiatedAction??)>
+                    <div class="dserv-alert dserv-alert-${message.type!}">
+                        <span class="dserv-alert-text">${message.summary}</span>
                     </div>
                 </#if>
                 <#nested "form">
