@@ -21,7 +21,8 @@ function _error_msg(){
 }
 
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-daml_dir="${script_dir}/../deserve/daml"
+# Use the mounted daml directory directly (mounted at /daml in container)
+daml_dir="/daml"
 
 _info "Starting DAML package upload process..."
 
