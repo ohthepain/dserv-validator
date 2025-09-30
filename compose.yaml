@@ -61,7 +61,11 @@ services:
         condition: service_healthy
 
     healthcheck:
-      test: ["CMD-SHELL", "timeout 10 bash -c 'until echo > /dev/tcp/localhost/9000; do sleep 1; done'"]
+      test:
+        [
+          "CMD-SHELL",
+          "timeout 10 bash -c 'until echo > /dev/tcp/localhost/9000; do sleep 1; done'",
+        ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -133,6 +137,7 @@ services:
       - SPLICE_APP_VALIDATOR_PARTY_HINT=${PARTY_HINT}
       - SPLICE_APP_CONTACT_POINT=${CONTACT_POINT}
       - VALIDATOR_AUTH_CLIENT_ID=${VALIDATOR_AUTH_CLIENT_ID}
+      - MIGRATION_ID=${MIGRATION_ID:-}
       - VALIDATOR_AUTH_CLIENT_SECRET=${VALIDATOR_AUTH_CLIENT_SECRET}
       - DB_SERVER=${SPLICE_DB_SERVER}
       - DB_PORT=${SPLICE_DB_PORT}

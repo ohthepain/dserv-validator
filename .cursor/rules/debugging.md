@@ -1,5 +1,16 @@
 # Debugging and Service Management
 
+## VPN and local development
+
+VPN is required for local development in order to connect with the Canton Network
+
+## Onboarding secret
+
+If onboarding fails then it's probably an out of date secret. this will happen after db reset
+To get an onboarding secret:
+curl -X POST $ONBOARDING_SECRET_URL
+ONBOARDING_SECRET_URL=https://sv.sv-2.dev.global.canton.network.digitalasset.com/api/sv/v0/devnet/onboard/validator/prepare
+
 ## Service Control Commands
 
 - **Start local development**: Use `./go-local.sh` (excludes DAML uploader)
