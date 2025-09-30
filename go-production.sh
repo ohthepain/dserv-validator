@@ -25,6 +25,10 @@ if [ ! -f "config/nginx-keycloak/keycloak-production.conf" ]; then
     exit 1
 fi
 
+# Clean up any existing containers and networks
+echo "🧹 Cleaning up existing containers..."
+docker compose down --remove-orphans 2>/dev/null || true
+
 echo "📋 Starting services (including DAML uploader)..."
 docker compose -f compose.yaml -f compose.prod.yaml -f compose-daml-upload.yaml up -d
 
