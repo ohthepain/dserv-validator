@@ -8,9 +8,9 @@ services:
   daml-uploader:
     image: digitalasset/daml-sdk:2.8.0
     volumes:
-      - ../deserve/daml:/daml
+      - ../deserve/daml/.daml/dist:/dars:ro # Mount only the built DARs
       - ./upload-daml.sh:/upload-daml.sh
-    working_dir: /daml
+    working_dir: /
     command: ["/upload-daml.sh"]
     depends_on:
       participant:
