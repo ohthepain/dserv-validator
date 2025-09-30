@@ -1,12 +1,12 @@
 {
-  "issuer": "http://keycloak.localhost:8082/realms/AppUser",
-  "authorization_endpoint": "http://keycloak.localhost:8082/realms/AppUser/protocol/openid-connect/auth",
-  "token_endpoint": "http://keycloak.localhost:8082/realms/AppUser/protocol/openid-connect/token",
-  "introspection_endpoint": "http://keycloak.localhost:8082/realms/AppUser/protocol/openid-connect/token/introspect",
-  "userinfo_endpoint": "http://keycloak.localhost:8082/realms/AppUser/protocol/openid-connect/userinfo",
-  "end_session_endpoint": "http://keycloak.localhost:8082/realms/AppUser/protocol/openid-connect/logout",
-  "jwks_uri": "http://keycloak.localhost:8082/realms/AppUser/protocol/openid-connect/certs",
-  "check_session_iframe": "http://keycloak.localhost:8082/realms/AppUser/protocol/openid-connect/login-status-iframe.html",
+  "issuer": "http://nginx-keycloak:8082/realms/AppUser",
+  "authorization_endpoint": "http://nginx-keycloak:8082/realms/AppUser/protocol/openid-connect/auth",
+  "token_endpoint": "http://nginx-keycloak:8082/realms/AppUser/protocol/openid-connect/token",
+  "introspection_endpoint": "http://nginx-keycloak:8082/realms/AppUser/protocol/openid-connect/token/introspect",
+  "userinfo_endpoint": "http://nginx-keycloak:8082/realms/AppUser/protocol/openid-connect/userinfo",
+  "end_session_endpoint": "http://nginx-keycloak:8082/realms/AppUser/protocol/openid-connect/logout",
+  "jwks_uri": "http://nginx-keycloak:8082/realms/AppUser/protocol/openid-connect/certs",
+  "check_session_iframe": "http://nginx-keycloak:8082/realms/AppUser/protocol/openid-connect/login-status-iframe.html",
   "grant_types_supported": ["authorization_code", "implicit", "refresh_token", "password", "client_credentials"],
   "acr_values_supported": ["0", "1"],
   "response_types_supported": [
@@ -89,7 +89,7 @@
     "A256GCM"
   ],
   "response_modes_supported": ["query", "fragment", "form_post", "query.jwt", "fragment.jwt", "form_post.jwt", "jwt"],
-  "registration_endpoint": "http://keycloak.localhost:8082/realms/AppUser/clients-registrations/openid-connect",
+  "registration_endpoint": "http://nginx-keycloak:8082/realms/AppUser/clients-registrations/openid-connect",
   "token_endpoint_auth_methods_supported": [
     "private_key_jwt",
     "client_secret_basic",
@@ -155,7 +155,7 @@
     "PS512",
     "RS512"
   ],
-  "revocation_endpoint": "http://keycloak.localhost:8082/realms/AppUser/protocol/openid-connect/logout",
+  "revocation_endpoint": "http://nginx-keycloak:8082/realms/AppUser/protocol/openid-connect/logout",
   "revocation_endpoint_auth_methods_supported": [
     "private_key_jwt",
     "client_secret_basic",
@@ -176,9 +176,9 @@
   ],
   "backchannel_logout_supported": true,
   "backchannel_logout_session_supported": true,
-  "device_authorization_endpoint": "http://keycloak.localhost:8082/realms/AppUser/protocol/openid-connect/auth/device",
+  "device_authorization_endpoint": "http://nginx-keycloak:8082/realms/AppUser/protocol/openid-connect/auth/device",
   "backchannel_token_delivery_modes_supported": ["poll", "ping"],
-  "backchannel_authentication_endpoint": "http://keycloak.localhost:8082/realms/AppUser/protocol/openid-connect/ext/ciba/auth",
+  "backchannel_authentication_endpoint": "http://nginx-keycloak:8082/realms/AppUser/protocol/openid-connect/ext/ciba/auth",
   "backchannel_authentication_request_signing_alg_values_supported": [
     "PS384",
     "ES384",
@@ -191,5 +191,5 @@
     "RS512"
   ],
   "require_pushed_authorization_requests": false,
-  "pushed_authorization_request_endpoint": "http://keycloak.localhost:8082/realms/AppUser/protocol/openid-connect/ext/par/request"
+  "pushed_authorization_request_endpoint": "http://nginx-keycloak:8082/realms/AppUser/protocol/openid-connect/ext/par/request"
 }
