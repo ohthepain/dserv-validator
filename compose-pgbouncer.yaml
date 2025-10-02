@@ -1,0 +1,15 @@
+# PgBouncer service for PostgreSQL connection pooling
+services:
+  pgbouncer:
+    image: pgbouncer/pgbouncer:latest
+    container_name: pgbouncer
+    volumes:
+      - ./pgbouncer.ini:/etc/pgbouncer/pgbouncer.ini
+      - ./userlist.txt:/etc/pgbouncer/userlist.txt
+    ports:
+      - "5432:5432" # PgBouncer proxy
+    depends_on:
+      - postgres-splice
+    restart: always
+    networks:
+      - default

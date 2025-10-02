@@ -89,7 +89,6 @@ services:
       - "8082:8082"
       - "8083:8083"
       - "443:443"
-      - "5432:5432" # PostgreSQL proxy
     depends_on:
       - keycloak
 
