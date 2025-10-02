@@ -17,9 +17,9 @@ services:
       - CREATE_DATABASE_validator=validator
       - CREATE_DATABASE_keycloak=keycloak
       - CREATE_DATABASE_dserv=dserv
-    # SECURITY: PostgreSQL port removed - use SSH tunnel for access
-    # ports:
-    #   - 5432:5432
+    # DEVELOPMENT: PostgreSQL port exposed for development access
+    ports:
+      - "5432:5432"
     volumes:
       - postgres-splice:/var/lib/postgresql/data
       - ./postgres-entrypoint.sh:/postgres-entrypoint.sh

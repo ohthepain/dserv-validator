@@ -3,9 +3,15 @@ services:
   pgbouncer:
     image: pgbouncer/pgbouncer:latest
     container_name: pgbouncer
-    volumes:
-      - ./pgbouncer.ini:/etc/pgbouncer/pgbouncer.ini
-      - ./userlist.txt:/etc/pgbouncer/userlist.txt
+    environment:
+      - DATABASES_HOST=postgres-splice
+      - DATABASES_PORT=5432
+      - DATABASES_USER=cnadmin
+      - DATABASES_PASSWORD=supersafe
+      - DATABASES_DBNAME=dserv
+      - POOL_MODE=transaction
+      - MAX_CLIENT_CONN=100
+      - DEFAULT_POOL_SIZE=20
     ports:
       - "5432:5432" # PgBouncer proxy
     depends_on:
