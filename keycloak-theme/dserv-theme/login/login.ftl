@@ -29,11 +29,11 @@
                 <div class="dserv-tab-content" id="signin-tab">
                     <form id="kc-form-login" onsubmit="login.disabled = true; return true;" action="${url.loginAction}" method="post">
                         <div class="dserv-form-group">
-                            <label class="dserv-label" for="username">Email</label>
+                            <label class="dserv-label" for="username">Email or Username</label>
                             <#if usernameEditDisabled??>
-                                <input tabindex="1" id="username" class="dserv-input" name="username" value="${(login.username!'')}" type="email" disabled />
+                                <input tabindex="1" id="username" class="dserv-input" name="username" value="${(login.username!'')}" type="text" disabled />
                             <#else>
-                                <input tabindex="1" id="username" class="dserv-input" name="username" value="${(login.username!'')}" type="email" autofocus autocomplete="off" placeholder="Enter your email" />
+                                <input tabindex="1" id="username" class="dserv-input" name="username" value="${(login.username!'')}" type="text" autofocus autocomplete="off" placeholder="Enter your email or username" />
                             </#if>
                         </div>
 
