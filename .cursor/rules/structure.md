@@ -20,14 +20,23 @@ USER_VALIDATOR_URL=http://138.201.22.153:27575
 
 #### Scenario 2: Local client and remote backend and services
 
-This and deserv repos are deployed to our ubuntu server. Frontend (dfront) runs locally.
-Web clients require https but we run a local proxy to keycloak for the dfront
+This repo is deployed to our ubuntu server. Frontend (dfront) and backend (deserve) run locally from my macbook.
+The canton and postgres services are accessible from dev machine.
+
+Ubuntu Node Setup:
+
+> ./firewall-dev-secure.sh
+> docker compose -f compose-dev-secure.yaml up -d
+
+Local setup:
+
+> ssh -L 5432:localhost:5432 -L 7575:localhost:7575 -L 8082:localhost:8082 paul@138.201.22.153
 
 ```env
 KEYCLOAK_URL=http://keycloak.localhost:8083
 DATABASE_URL=postgresql://cnadmin:supersafe@138.201.22.153:5432/dserv
-PROVIDER_VALIDATOR_URL=http://localhost:37575
-USER_VALIDATOR_URL=http://localhost:27575
+PROVIDER_VALIDATOR_URL=http://localhost:7575
+USER_VALIDATOR_URL=http://localhost:7575
 ```
 
 #### Scenario 3: Full Local Development
