@@ -5,6 +5,10 @@ volumes:
   domain-upgrade-dump:
   keycloak-data:
 
+networks:
+  dserv-network:
+    driver: bridge
+
 services:
   postgres-splice:
     image: "postgres:${SPLICE_POSTGRES_VERSION}"
@@ -35,6 +39,8 @@ services:
       timeout: 3s
       retries: 3
       start_period: 60s
+    networks:
+      - dserv-network
 
   # Keycloak authentication service
   # Note: No direct port exposure - access via nginx-keycloak proxy on port 8082
@@ -117,6 +123,8 @@ services:
       postgres-splice:
         condition: service_healthy
     restart: always
+    networks:
+      - dserv-network
 
   validator:
     image: "${IMAGE_REPO}validator-app:${IMAGE_TAG}"
