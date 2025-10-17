@@ -77,6 +77,8 @@ services:
       timeout: 10s
       retries: 3
       start_period: 60s
+    networks:
+      - dserv-network
 
   # IMPORTANT: nginx-keycloak proxy is required for proper Keycloak configuration
   # - Provides consistent port mapping (8082) for Keycloak access
@@ -97,6 +99,8 @@ services:
       - "443:443"
     depends_on:
       - keycloak
+    networks:
+      - dserv-network
 
   participant:
     image: "${IMAGE_REPO}canton-participant:${IMAGE_TAG}"
