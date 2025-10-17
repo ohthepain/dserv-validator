@@ -165,6 +165,8 @@ services:
       nginx-keycloak:
         condition: service_started
     restart: always
+    networks:
+      - dserv-network
 
   wallet-web-ui:
     image: "${IMAGE_REPO}wallet-web-ui:${IMAGE_TAG}"
@@ -179,6 +181,8 @@ services:
       - SPLICE_APP_UI_AMULET_NAME_ACRONYM=${SPLICE_APP_UI_AMULET_NAME_ACRONYM}
       - SPLICE_APP_UI_NAME_SERVICE_NAME=${SPLICE_APP_UI_NAME_SERVICE_NAME}
       - SPLICE_APP_UI_NAME_SERVICE_NAME_ACRONYM=${SPLICE_APP_UI_NAME_SERVICE_NAME_ACRONYM}
+    networks:
+      - dserv-network
 
   ans-web-ui:
     image: "${IMAGE_REPO}ans-web-ui:${IMAGE_TAG}"
@@ -194,6 +198,8 @@ services:
       - SPLICE_APP_UI_AMULET_NAME_ACRONYM=${SPLICE_APP_UI_AMULET_NAME_ACRONYM}
       - SPLICE_APP_UI_NAME_SERVICE_NAME=${SPLICE_APP_UI_NAME_SERVICE_NAME}
       - SPLICE_APP_UI_NAME_SERVICE_NAME_ACRONYM=${SPLICE_APP_UI_NAME_SERVICE_NAME_ACRONYM}
+    networks:
+      - dserv-network
 
   nginx:
     image: "nginx:${NGINX_VERSION}"
@@ -212,3 +218,5 @@ services:
       timeout: 10s
       retries: 3
       start_period: 60s
+    networks:
+      - dserv-network
