@@ -235,7 +235,7 @@ services:
     mem_limit: 1gb
     volumes:
       - ./config/canton-console/app.conf:/app/app.conf
-      - ./docker/canton-console/entrypoint.sh:/app/entrypoint.sh
+      - ./canton-console/entrypoint.sh:/app/entrypoint.sh
     environment:
       - _JAVA_OPTIONS=-XX:+UseContainerSupport -XX:-UseCompressedOops
       - PARTICIPANT_LEDGER_API_PORT=7575
@@ -263,7 +263,7 @@ services:
     mem_limit: 1gb
     volumes:
       - ./config/canton-console/app.conf:/app/app.conf
-      - ./docker/canton-console/entrypoint.sh:/app/entrypoint.sh
+      - ./canton-console/entrypoint.sh:/app/entrypoint.sh
     environment:
       - _JAVA_OPTIONS=-XX:+UseContainerSupport -XX:-UseCompressedOops
       - PARTICIPANT_LEDGER_API_PORT=7575
