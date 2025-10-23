@@ -124,6 +124,8 @@ services:
       - ./config/participant/app.conf:/app/app.conf
     ports:
       - "7575:7575"
+      - "5001:5001"
+      - "5002:5002"
     depends_on:
       postgres-splice:
         condition: service_healthy
@@ -164,6 +166,8 @@ services:
     volumes:
       - ./config/validator/app.conf:/app/app.conf
       - domain-upgrade-dump:/domain-upgrade-dump
+    ports:
+      - "5003:5003"
     depends_on:
       postgres-splice:
         condition: service_healthy
