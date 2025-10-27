@@ -293,6 +293,8 @@ services:
     image: ${SCRIBE_IMAGE}:${SCRIBE_VERSION}
     container_name: pqs
     working_dir: /daml3.3
+    ports:
+      - "9000:8080"
     env_file:
       - .env
     command:
