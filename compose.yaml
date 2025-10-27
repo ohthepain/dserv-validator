@@ -294,9 +294,7 @@ services:
     container_name: pqs
     working_dir: /daml3.3
     env_file:
-      - ./env/ports.env
-      - ./env/app-provider.env
-      - ./env/pqs.env
+      - .env
     command:
       - "pipeline"
       - "ledger"
