@@ -288,3 +288,26 @@ services:
         condition: service_healthy
     networks:
       - dserv-network
+
+  pqs:
+    image: ${SCRIBE_IMAGE}:${SCRIBE_VERSION}
+    container_name: pqs
+    working_dir: /daml3.3
+    env_file:
+      - ./env/ports.env
+      - ./env/app-provider.env
+      - ./env/pqs.env
+    command:
+      - "pipeline"
+      - "ledger"
+      - "postgres-document"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      canton:
+        condition: service_healthy
+      splice:
+        condition: service_healthy
+    restart: on-failure:100
+    networks:
+      - dserv-network
