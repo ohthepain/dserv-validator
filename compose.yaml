@@ -277,28 +277,28 @@ services:
     networks:
       - dserv-network
 
-  pqs:
-    image: ${SCRIBE_IMAGE}:${SCRIBE_VERSION}
-    container_name: pqs
-    working_dir: /daml3.3
-    ports:
-      - "9000:8080"
-    env_file:
-      - .env
-      - ./env/ports.env
-      - ./env/app-provider.env
-      - ./env/pqs.env
-    command:
-      - "pipeline"
-      - "ledger"
-      - "postgres-document"
-    depends_on:
-      postgres-splice:
-        condition: service_healthy
-      participant:
-        condition: service_healthy
-      validator:
-        condition: service_healthy
-    restart: on-failure:100
-    networks:
-      - dserv-network
+  # pqs:
+  #   image: ${SCRIBE_IMAGE}:${SCRIBE_VERSION}
+  #   container_name: pqs
+  #   working_dir: /daml3.3
+  #   ports:
+  #     - "9000:8080"
+  #   env_file:
+  #     - .env
+  #     - ./env/ports.env
+  #     - ./env/app-provider.env
+  #     - ./env/pqs.env
+  #   command:
+  #     - "pipeline"
+  #     - "ledger"
+  #     - "postgres-document"
+  #   depends_on:
+  #     postgres-splice:
+  #       condition: service_healthy
+  #     participant:
+  #       condition: service_healthy
+  #     validator:
+  #       condition: service_healthy
+  #   restart: on-failure:100
+  #   networks:
+  #     - dserv-network
