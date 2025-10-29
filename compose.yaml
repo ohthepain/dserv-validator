@@ -19,7 +19,11 @@ services:
       - POSTGRES_DB=postgres # not used by splice
       # Any env vars starting with CREATE_DATABASE_ will be used to create a database
       - CREATE_DATABASE_participant=participant
+      - CREATE_DATABASE_participant_user=participant-user
+      - CREATE_DATABASE_participant_provider=participant-provider
       - CREATE_DATABASE_validator=validator
+      - CREATE_DATABASE_validator_app_user=validator-app-user
+      - CREATE_DATABASE_validator_app_provider=validator-app-provider
       - CREATE_DATABASE_keycloak=keycloak
       - CREATE_DATABASE_dserv=dserv
     # DEVELOPMENT: PostgreSQL port exposed for development access
