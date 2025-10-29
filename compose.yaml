@@ -128,17 +128,15 @@ services:
       - DB_USER=${SPLICE_DB_USER}
       - DB_PASSWORD=${SPLICE_DB_PASSWORD}
       - LEDGER_API_ADMIN_USER=${LEDGER_API_ADMIN_USER}
-      - PARTICIPANT_LEDGER_API_PORT=${PARTICIPANT_LEDGER_API_PORT}
-      - PARTICIPANT_ADMIN_API_PORT=${PARTICIPANT_ADMIN_API_PORT}
-      - PARTICIPANT_JSON_API_PORT=${PARTICIPANT_JSON_API_PORT}
-      - CANTON_HTTP_HEALTHCHECK_PORT=${CANTON_HTTP_HEALTHCHECK_PORT}
-      - CANTON_GRPC_HEALTHCHECK_PORT=${CANTON_GRPC_HEALTHCHECK_PORT}
+      # Port variables are loaded from env/ports.env via env_file above
+      # No need to set them here - env_file will make them available to the container
       # Base URLs loaded from env_file (needed for variable expansion below)
-      - AUTH_APP_USER_ISSUER_URL_BACKEND=${AUTH_APP_USER_ISSUER_URL_BACKEND}
-      - AUTH_APP_PROVIDER_ISSUER_URL_BACKEND=${AUTH_APP_PROVIDER_ISSUER_URL_BACKEND}
-      # Expand JWK URLs dynamically (env_file doesn't expand variables, so we do it here)
-      - AUTH_APP_USER_JWK_SET_URL=${AUTH_APP_USER_ISSUER_URL_BACKEND}/protocol/openid-connect/certs
-      - AUTH_APP_PROVIDER_JWK_SET_URL=${AUTH_APP_PROVIDER_ISSUER_URL_BACKEND}/protocol/openid-connect/certs
+      # Use defaults if not set in host environment (env_file will override these in container)
+      - AUTH_APP_USER_ISSUER_URL_BACKEND=${AUTH_APP_USER_ISSUER_URL_BACKEND:-http://nginx-keycloak:8082/realms/AppUser}
+      - AUTH_APP_PROVIDER_ISSUER_URL_BACKEND=${AUTH_APP_PROVIDER_ISSUER_URL_BACKEND:-http://nginx-keycloak:8082/realms/AppUser}
+      # Expand JWK URLs dynamically using the base URLs set above
+      - AUTH_APP_USER_JWK_SET_URL=${AUTH_APP_USER_ISSUER_URL_BACKEND:-http://nginx-keycloak:8082/realms/AppUser}/protocol/openid-connect/certs
+      - AUTH_APP_PROVIDER_JWK_SET_URL=${AUTH_APP_PROVIDER_ISSUER_URL_BACKEND:-http://nginx-keycloak:8082/realms/AppUser}/protocol/openid-connect/certs
       # Expand party hints dynamically from PARTY_HINT
       - APP_USER_PARTY_HINT=app_user_${PARTY_HINT}
       - APP_PROVIDER_PARTY_HINT=app_provider_${PARTY_HINT}
