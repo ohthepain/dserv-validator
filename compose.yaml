@@ -175,10 +175,10 @@ services:
     volumes:
       - ./config/validator/app.conf:/app/app.conf
       - ./config/validator/bootstrap.sc:/app/bootstrap.sc
-      - ./config/validator/entrypoint.sh:/app/entrypoint.sh
+      - ./config/validator/entrypoint.sh:/splice-entrypoint.sh
       # - ./config/validator/health-check.sh:/app/health-check.sh
       - domain-upgrade-dump:/domain-upgrade-dump
-    entrypoint: /app/entrypoint.sh
+    entrypoint: /splice-entrypoint.sh
     ports:
       - "25003:25003"
       - "35003:35003"
