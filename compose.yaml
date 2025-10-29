@@ -176,12 +176,19 @@ services:
       - ./config/validator/app.conf:/app/app.conf
       - ./config/validator/bootstrap.sc:/app/bootstrap.sc
       - ./config/validator/entrypoint.sh:/splice-entrypoint.sh
-      # - ./config/validator/health-check.sh:/app/health-check.sh
+      - ./config/validator/health-check.sh:/app/health-check.sh
       - domain-upgrade-dump:/domain-upgrade-dump
     entrypoint: /splice-entrypoint.sh
     ports:
       - "25003:25003"
       - "35003:35003"
+    healthcheck:
+      test: ["CMD", "bash", "/app/health-check.sh"]
+      interval: 20s
+      start_interval: 5s
+      timeout: 40s
+      retries: 100
+      start_period: 30s
     depends_on:
       postgres-splice:
         condition: service_healthy
