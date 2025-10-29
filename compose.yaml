@@ -172,6 +172,7 @@ services:
       - PARTICIPANT_IDENTIFIER=${PARTICIPANT_IDENTIFIER}
     volumes:
       - ./config/validator/app.conf:/app/app.conf
+      - ./config/validator/bootstrap.sc:/app/bootstrap.sc
       - domain-upgrade-dump:/domain-upgrade-dump
     ports:
       - "25003:25003"
