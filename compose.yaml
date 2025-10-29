@@ -109,6 +109,10 @@ services:
 
   participant:
     image: "${IMAGE_REPO}canton-participant:${IMAGE_TAG}"
+    env_file:
+      - ./env/ports.env
+      - ./env/app-provider.env
+      - ./env/app-user.env
     environment:
       - AUTH_JWKS_URL=${AUTH_JWKS_URL}
       - AUTH_TARGET_AUDIENCE=${LEDGER_API_AUTH_AUDIENCE}
