@@ -154,11 +154,13 @@ services:
       - SPLICE_APP_VALIDATOR_AUTH_JWKS_URL=${AUTH_JWKS_URL}
       - SPLICE_APP_VALIDATOR_PARTICIPANT_ADDRESS=participant
       - SPLICE_APP_VALIDATOR_SV_SPONSOR_ADDRESS=${SPONSOR_SV_ADDRESS}
-      - SPLICE_APP_VALIDATOR_ONBOARDING_SECRET=${ONBOARDING_SECRET}
       - SPLICE_APP_VALIDATOR_SCAN_ADDRESS=${SCAN_ADDRESS}
       - SPLICE_APP_VALIDATOR_PARTICIPANT_IDENTIFIER=${PARTICIPANT_IDENTIFIER}
       - SPLICE_APP_VALIDATOR_PARTY_HINT=${PARTY_HINT}
       - SPLICE_APP_CONTACT_POINT=${CONTACT_POINT}
+      - APP_USER_VALIDATOR_ONBOARDING_SECRET=${APP_USER_VALIDATOR_ONBOARDING_SECRET:-}
+      - APP_PROVIDER_VALIDATOR_ONBOARDING_SECRET=${APP_PROVIDER_VALIDATOR_ONBOARDING_SECRET:-}
+      - ONBOARDING_SECRET_URL=${ONBOARDING_SECRET_URL}
       - VALIDATOR_AUTH_CLIENT_ID=${VALIDATOR_AUTH_CLIENT_ID}
       - MIGRATION_ID=${MIGRATION_ID:-}
       - VALIDATOR_AUTH_CLIENT_SECRET=${VALIDATOR_AUTH_CLIENT_SECRET}
@@ -173,7 +175,10 @@ services:
     volumes:
       - ./config/validator/app.conf:/app/app.conf
       - ./config/validator/bootstrap.sc:/app/bootstrap.sc
+      - ./config/validator/entrypoint.sh:/app/entrypoint.sh
+      # - ./config/validator/health-check.sh:/app/health-check.sh
       - domain-upgrade-dump:/domain-upgrade-dump
+    entrypoint: /app/entrypoint.sh
     ports:
       - "25003:25003"
       - "35003:35003"
