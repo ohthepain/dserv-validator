@@ -180,7 +180,7 @@ services:
       - AUTH_APP_PROVIDER_JWK_SET_URL=http://nginx-keycloak:8082/realms/AppProvider/protocol/openid-connect/certs
       - AUTH_APP_PROVIDER_AUDIENCE=https://canton.network.global
       - AUTH_APP_PROVIDER_VALIDATOR_CLIENT_ID=app-provider-validator
-      - AUTH_APP_PROVIDER_VALIDATOR_CLIENT_SECRET=7E9A6XFiDwF9Jdt6gBoFn4JcC2NNKzHf
+      - AUTH_APP_PROVIDER_VALIDATOR_CLIENT_SECRET=pQagV9Fmy1S6HInFIAfUgUC9ZYG0btf0
       - AUTH_APP_PROVIDER_VALIDATOR_USER_ID=c87743ab-80e0-4b83-935a-4c0582226691
       # Expand party hints dynamically from PARTY_HINT
       - APP_USER_PARTY_HINT=app_user_${PARTY_HINT}
