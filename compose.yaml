@@ -133,10 +133,10 @@ services:
       # Base URLs loaded from env_file (needed for variable expansion below)
       # Use defaults if not set in host environment (env_file will override these in container)
       - AUTH_APP_USER_ISSUER_URL_BACKEND=${AUTH_APP_USER_ISSUER_URL_BACKEND:-http://nginx-keycloak:8082/realms/AppUser}
-      - AUTH_APP_PROVIDER_ISSUER_URL_BACKEND=${AUTH_APP_PROVIDER_ISSUER_URL_BACKEND:-http://nginx-keycloak:8082/realms/AppUser}
+      - AUTH_APP_PROVIDER_ISSUER_URL_BACKEND=${AUTH_APP_PROVIDER_ISSUER_URL_BACKEND:-http://nginx-keycloak:8082/realms/AppProvider}
       # Expand JWK URLs dynamically using the base URLs set above
       - AUTH_APP_USER_JWK_SET_URL=${AUTH_APP_USER_ISSUER_URL_BACKEND:-http://nginx-keycloak:8082/realms/AppUser}/protocol/openid-connect/certs
-      - AUTH_APP_PROVIDER_JWK_SET_URL=${AUTH_APP_PROVIDER_ISSUER_URL_BACKEND:-http://nginx-keycloak:8082/realms/AppUser}/protocol/openid-connect/certs
+      - AUTH_APP_PROVIDER_JWK_SET_URL=${AUTH_APP_PROVIDER_ISSUER_URL_BACKEND:-http://nginx-keycloak:8082/realms/AppProvider}/protocol/openid-connect/certs
       # Expand party hints dynamically from PARTY_HINT
       - APP_USER_PARTY_HINT=app_user_${PARTY_HINT}
       - APP_PROVIDER_PARTY_HINT=app_provider_${PARTY_HINT}
