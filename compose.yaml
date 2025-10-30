@@ -157,6 +157,12 @@ services:
       postgres-splice:
         condition: service_healthy
     restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:27000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 120s
     networks:
       - dserv-network
 
