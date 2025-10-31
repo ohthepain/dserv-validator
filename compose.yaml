@@ -137,6 +137,9 @@ services:
       # Expand JWK URLs dynamically using the base URLs set above
       - AUTH_APP_USER_JWK_SET_URL=${AUTH_APP_USER_ISSUER_URL_BACKEND:-http://nginx-keycloak:8082/realms/AppUser}/protocol/openid-connect/certs
       - AUTH_APP_PROVIDER_JWK_SET_URL=${AUTH_APP_PROVIDER_ISSUER_URL_BACKEND:-http://nginx-keycloak:8082/realms/AppProvider}/protocol/openid-connect/certs
+      # User IDs for admin access (from env_file, but explicitly set here)
+      - AUTH_APP_USER_VALIDATOR_USER_ID=${AUTH_APP_USER_VALIDATOR_USER_ID:-c5d7778a-ce31-41e3-9c82-34f03e1fbb33}
+      - AUTH_APP_PROVIDER_VALIDATOR_USER_ID=${AUTH_APP_PROVIDER_VALIDATOR_USER_ID:-c87743ab-80e0-4b83-935a-4c0582226691}
       # Expand party hints dynamically from PARTY_HINT
       - APP_USER_PARTY_HINT=app_user_${PARTY_HINT}
       - APP_PROVIDER_PARTY_HINT=app_provider_${PARTY_HINT}
