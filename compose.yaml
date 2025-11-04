@@ -346,6 +346,20 @@ services:
       - ./env/ports.env
       - ./env/app-provider.env
       - ./env/pqs.env
+    environment:
+      - DB_SERVER=${SPLICE_DB_SERVER}
+      - DB_PORT=${SPLICE_DB_PORT}
+      - DB_USER=${SPLICE_DB_USER}
+      - DB_PASSWORD=${SPLICE_DB_PASSWORD}
+      - PARTICIPANT_LEDGER_API_PORT=${PARTICIPANT_LEDGER_API_PORT:-5001}
+      # PQS/SCRIBE environment variables - set directly to ensure proper expansion
+      - SCRIBE_SOURCE_LEDGER_HOST=participant
+      - SCRIBE_SOURCE_LEDGER_PORT=3${PARTICIPANT_LEDGER_API_PORT:-5001}
+      - SCRIBE_TARGET_POSTGRES_HOST=${SPLICE_DB_SERVER}
+      - SCRIBE_TARGET_POSTGRES_PORT=${SPLICE_DB_PORT}
+      - SCRIBE_TARGET_POSTGRES_USERNAME=${SPLICE_DB_USER}
+      - SCRIBE_TARGET_POSTGRES_PASSWORD=${SPLICE_DB_PASSWORD}
+      - SCRIBE_TARGET_POSTGRES_DATABASE=scribe
     command:
       - "pipeline"
       - "ledger"
