@@ -360,9 +360,9 @@ services:
       - SCRIBE_TARGET_POSTGRES_USERNAME=${SPLICE_DB_USER}
       - SCRIBE_TARGET_POSTGRES_PASSWORD=${SPLICE_DB_PASSWORD}
       - SCRIBE_TARGET_POSTGRES_DATABASE=scribe
-      # OAuth configuration - read from .env file to avoid hardcoding secrets
-      - SCRIBE_PIPELINE_OAUTH_CLIENTID=${SCRIBE_PIPELINE_OAUTH_CLIENTID}
-      - SCRIBE_PIPELINE_OAUTH_CLIENTSECRET=${SCRIBE_PIPELINE_OAUTH_CLIENTSECRET}
+      # OAuth configuration - hardcoded for now (can be changed to env vars later)
+      - SCRIBE_PIPELINE_OAUTH_CLIENTID=app-provider-pqs
+      - SCRIBE_PIPELINE_OAUTH_CLIENTSECRET=zuYvMzWEo8csYNiQNlmXNPsmPErBWP3W
       - SCRIBE_PIPELINE_OAUTH_SCOPE=openid
       - SCRIBE_PIPELINE_OAUTH_ENDPOINT=http://nginx-keycloak:8082/realms/AppProvider/protocol/openid-connect/token
       - SCRIBE_SOURCE_LEDGER_AUTH=OAuth
