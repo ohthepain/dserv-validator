@@ -195,6 +195,8 @@ services:
       # Expand party hints dynamically from PARTY_HINT
       - APP_USER_PARTY_HINT=app_user_${PARTY_HINT}
       - APP_PROVIDER_PARTY_HINT=app_provider_${PARTY_HINT}
+      # Validator ledger API auth audience (required by validator initialization)
+      - SPLICE_APP_VALIDATOR_LEDGER_API_AUTH_AUDIENCE=https://canton.network.global
       - SPLICE_APP_VALIDATOR_PARTICIPANT_ADDRESS=participant
       - SPLICE_APP_VALIDATOR_SV_SPONSOR_ADDRESS=${SPONSOR_SV_ADDRESS}
       - SPLICE_APP_VALIDATOR_SCAN_ADDRESS=${SCAN_ADDRESS}
