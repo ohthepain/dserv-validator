@@ -367,12 +367,15 @@ services:
       - SCRIBE_PIPELINE_OAUTH_ENDPOINT=http://nginx-keycloak:8082/realms/AppProvider/protocol/openid-connect/token
       - SCRIBE_SOURCE_LEDGER_AUTH=OAuth
       - SCRIBE_PIPELINE_OAUTH_PARAMETERS_AUDIENCE=https://canton.network.global
+      # Health endpoint configuration - bind to all interfaces
+      - SCRIBE_HEALTH_ADDRESS=0.0.0.0
+      - SCRIBE_HEALTH_PORT=8080
     command:
       - "pipeline"
       - "ledger"
       - "postgres-document"
-      - "--health-host=0.0.0.0"
-      - "--health-port=8080"
+      - "--health-host"
+      - "0.0.0.0"
     depends_on:
       postgres-splice:
         condition: service_healthy
