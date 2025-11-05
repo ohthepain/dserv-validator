@@ -21,29 +21,49 @@ fi
 
 echo "Token obtained successfully"
 
-# Check if user exists - it should exist since it's a service account
+# Check if user exists in participant, create if not (following quickstart pattern)
 echo "Checking if PQS service account user ${PQS_USER_ID} exists in participant..."
-USER_RESPONSE=$(curl -s -w "\n%{http_code}" "http://${PARTICIPANT}/v2/users/${PQS_USER_ID}" \
+USER_CODE=$(curl -s -o /dev/null -w "%{http_code}" "http://${PARTICIPANT}/v2/users/${PQS_USER_ID}" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json")
 
-USER_CODE=$(echo "$USER_RESPONSE" | tail -n1)
-USER_BODY=$(echo "$USER_RESPONSE" | sed '$d')
-
 if [ "$USER_CODE" == "404" ]; then
-  echo "ERROR: PQS service account user ${PQS_USER_ID} not found in participant!"
-  echo "This user should exist. Please check:"
-  echo "1. The user ID is correct: ${PQS_USER_ID}"
-  echo "2. The participant is accessible at ${PARTICIPANT}"
-  echo "3. The user has been registered in the participant"
-  exit 1
+  echo "User does not exist in participant, creating user ${PQS_USER_ID}..."
+  CREATE_RESPONSE=$(curl -fsS -w "\n%{http_code}" "http://${PARTICIPANT}/v2/users" \
+    -H "Authorization: Bearer $TOKEN" \
+    -H "Content-Type: application/json" \
+    --data-raw "{
+      \"user\": {
+        \"id\": \"${PQS_USER_ID}\",
+        \"isDeactivated\": false,
+        \"primaryParty\": \"${PARTY_ID}\",
+        \"identityProviderId\": \"\",
+        \"metadata\": {
+          \"resourceVersion\": \"\",
+          \"annotations\": {
+            \"username\": \"${PQS_USER_NAME}\"
+          }
+        }
+      },
+      \"rights\": []
+    }")
+  
+  CREATE_CODE=$(echo "$CREATE_RESPONSE" | tail -n1)
+  CREATE_BODY=$(echo "$CREATE_RESPONSE" | sed '$d')
+  
+  if [ "$CREATE_CODE" == "200" ]; then
+    echo "User created successfully in participant"
+    echo "$CREATE_BODY" | jq -r .user.id
+  else
+    echo "Error creating user: HTTP $CREATE_CODE"
+    echo "$CREATE_BODY"
+    exit 1
+  fi
 elif [ "$USER_CODE" == "200" ]; then
-  echo "PQS service account user found in participant"
-  echo "$USER_BODY" | jq .
+  echo "User already exists in participant (HTTP $USER_CODE)"
 else
-  echo "ERROR: Unexpected status code when checking user: HTTP $USER_CODE"
-  echo "Response: $USER_BODY"
-  exit 1
+  echo "Warning: Unexpected status code when checking user: HTTP $USER_CODE"
+  echo "Continuing anyway to try granting permissions..."
 fi
 
 # Grant ReadAs permission
