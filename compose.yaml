@@ -243,21 +243,21 @@ services:
     networks:
       - dserv-network
 
-  wallet-web-ui:
-    image: "${IMAGE_REPO}wallet-web-ui:${IMAGE_TAG}"
-    environment:
-      - SPLICE_APP_UI_AUTH_AUDIENCE=${VALIDATOR_AUTH_AUDIENCE}
-      - SPLICE_APP_UI_AUTH_CLIENT_ID=${WALLET_UI_CLIENT_ID}
-      - SPLICE_APP_UI_AUTH_URL=${AUTH_URL}
-      - SPLICE_APP_UI_HTTP_URL=true
-      - SPLICE_APP_UI_NETWORK_NAME=${SPLICE_APP_UI_NETWORK_NAME}
-      - SPLICE_APP_UI_NETWORK_FAVICON_URL=${SPLICE_APP_UI_NETWORK_FAVICON_URL}
-      - SPLICE_APP_UI_AMULET_NAME=${SPLICE_APP_UI_AMULET_NAME}
-      - SPLICE_APP_UI_AMULET_NAME_ACRONYM=${SPLICE_APP_UI_AMULET_NAME_ACRONYM}
-      - SPLICE_APP_UI_NAME_SERVICE_NAME=${SPLICE_APP_UI_NAME_SERVICE_NAME}
-      - SPLICE_APP_UI_NAME_SERVICE_NAME_ACRONYM=${SPLICE_APP_UI_NAME_SERVICE_NAME_ACRONYM}
-    networks:
-      - dserv-network
+  # wallet-web-ui:
+  #   image: "${IMAGE_REPO}wallet-web-ui:${IMAGE_TAG}"
+  #   environment:
+  #     - SPLICE_APP_UI_AUTH_AUDIENCE=${VALIDATOR_AUTH_AUDIENCE}
+  #     - SPLICE_APP_UI_AUTH_CLIENT_ID=${WALLET_UI_CLIENT_ID}
+  #     - SPLICE_APP_UI_AUTH_URL=${AUTH_URL}
+  #     - SPLICE_APP_UI_HTTP_URL=true
+  #     - SPLICE_APP_UI_NETWORK_NAME=${SPLICE_APP_UI_NETWORK_NAME}
+  #     - SPLICE_APP_UI_NETWORK_FAVICON_URL=${SPLICE_APP_UI_NETWORK_FAVICON_URL}
+  #     - SPLICE_APP_UI_AMULET_NAME=${SPLICE_APP_UI_AMULET_NAME}
+  #     - SPLICE_APP_UI_AMULET_NAME_ACRONYM=${SPLICE_APP_UI_AMULET_NAME_ACRONYM}
+  #     - SPLICE_APP_UI_NAME_SERVICE_NAME=${SPLICE_APP_UI_NAME_SERVICE_NAME}
+  #     - SPLICE_APP_UI_NAME_SERVICE_NAME_ACRONYM=${SPLICE_APP_UI_NAME_SERVICE_NAME_ACRONYM}
+  #   networks:
+  #     - dserv-network
 
   nginx:
     image: "nginx:${NGINX_VERSION}"
@@ -266,7 +266,7 @@ services:
     ports:
       - 80:80
     depends_on:
-      - wallet-web-ui
+      # - wallet-web-ui
       - validator
       - pqs
     restart: always
